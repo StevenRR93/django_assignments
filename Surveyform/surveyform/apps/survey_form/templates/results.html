@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        #main{
+            margin: 10px auto;
+            width: 50%;
+            height: 100px;
+            margin-top: 50px;
+            background-color: green;
+            border: 1px solid black;
+        }
+        #title{
+            font-size: 18px;
+            text-decoration: underline;
+        }
+        #content{
+            margin: 10px auto;
+            margin-top: 20px;
+            display: block;
+            width: 600px;
+            height: 250px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        .data{
+            display: inline-block;
+            text-align: left;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+  </style>
+  </head>
+  <body>
+    <div id = 'main'><p>Thanks for submitting this form! You have submitted this form {{request.session.count}} times now.</p></div>
+    <div id = 'content'><p id = 'title'> Submitted Information:</p>
+        <div class = "data" id = 'd1'>
+            <p>Name:</p>
+            <p>Dojo Location:</p>
+            <p>Favorite Language:</p>
+            <p>Comment:</p>
+        </div>
+        <div class = "data" id = 'd2'>
+            <p>{{request.session.name}}</p>
+            <p>{{request.session.location}}</p>
+            <p>{{request.session.language}}</p>
+            <p>{{request.session.comment}}</p>
+        </div>
+        <form  action="/" method="GET">
+            {% csrf_token %}
+            <input type="submit" value="Go Back">
+        </form>
+    </div>
+  </body>
+</html>

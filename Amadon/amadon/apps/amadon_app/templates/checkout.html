@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Session Words</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #submit_area{
+            margin: 1px auto;
+            padding: 10px;
+            display: inline-block;
+            width: 45%;
+            height: 500px;
+            text-align: left;
+            vertical-align: left;
+            background-color: #00EEFF;
+            border-right: 3px solid black;
+        }
+        #display_area{
+            margin: 1px auto;
+            padding: 10px;
+            display: inline-block;
+            width: 45%;
+            height: 500px;
+            text-align: left;
+            vertical-align: top;
+            background-color: #99FF99;
+            border-left: 3px solid black;
+        }
+  </style>
+  
+  </head>
+  <body>
+    <h1> Welcome to the Amadon Store</h1>
+    <div id = "display_area">
+        <form  action="/clear" method="GET">
+            <input type="submit" value="clear">
+        </form>
+        {% for i in request.session.wordlist %}
+            <p class = "data"><span style = "color: {{i.color}}; font-size:{{i.font}}">{{i.string}}</span> -- added on {{i.time}}</p>
+        {% endfor %}
+    </div>
+    
+  </body>
+</html>

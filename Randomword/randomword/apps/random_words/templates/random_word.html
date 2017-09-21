@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Random Word</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        #toptext{
+            margin: 10px auto;
+            margin-top: 50px auto;
+            display: block;
+            width: 20%;
+            text-align: center;
+        }
+        #words{
+            margin: 10px auto;
+            display: block;
+            width: 50%;
+            border: 1px solid black;
+            text-align: center;
+        }
+        #b{
+            margin-top: 10px;
+            margin: auto;
+            display: block;
+            border: 1px solid black;
+            text-align: center;
+        }
+  </style>
+  </head>
+  <body>
+    <div id = "toptext">Random Word: Attempt #{{request.session.counter}}</p></div>
+    <div id = "words"><h1>{{request.session.value}}</h1></div>
+    <button type = "button" id = "b" action="/" method="GET"><a href = '/random_word'><h1>Generate</h1>
+  </body>
+</html> 

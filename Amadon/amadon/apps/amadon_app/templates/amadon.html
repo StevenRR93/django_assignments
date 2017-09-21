@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Session Words</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #tabletitle{
+            margin: 1px auto;
+            padding: 10px;
+            display: inline-block;
+            width: 45%;
+            height: 500px;
+            text-align: left;
+            vertical-align: left;
+            background-color: #00EEFF;
+            border-right: 3px solid black;
+        }
+        #display_area{
+            margin: 1px auto;
+            padding: 10px;
+            display: inline-block;
+            width: 45%;
+            height: 500px;
+            text-align: left;
+            vertical-align: top;
+            background-color: #99FF99;
+            border-left: 3px solid black;
+        }
+  </style>
+  
+  </head>
+  <body>
+    <h1> Welcome to the Amadon Store</h1>
+    <form action='/amadon/buy' method='post'></form>
+        <table style="width:100%">
+            <tr>
+                <th>Item</th>
+                <th>Price</th> 
+                <th>Quantity</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>Dojo Tshirt</td>
+                <td>$19.99</td> 
+                <td><select name="tshirt">
+                    {% for i in range(10) %}
+                        <option value=i>i</option>
+                        <option value=i>i</option>
+                        <option value=i>i</option>
+                        <option value=i>i</option>
+                    {% endfor %}
+                    </select></td>
+                <td><input type="submit" name = "sub_tshirt"></td>
+            </tr>
+            <tr>
+                <td>Dojo Sweater</td>
+                <td>$29.99</td> 
+                <td><select name="cars">
+                    {% for i in range(10) %}
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Dojo Cup</td>
+                <td>$4.99</td> 
+                <td><select name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select></td>
+            </tr>
+            <tr>
+                <td>Algorithm Book</td>
+                <td>$49.99</td>
+                <td><select name="cars">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </select></td>
+                <td></td>
+            </tr>
+        </table>
+    </form>
+    <!--
+    <form action='/amadon/buy' method='post'>
+        {% csrf_token %}
+        <select name='quantity'>
+           <option>1</option>
+           <option>2</option>
+           <option>3</option>
+        </select>
+        <input type='hidden' name='product_id' value='1015' />
+        <input type='submit' value='Buy!' />
+      </form>-->
+    
+  </body>
+</html>
