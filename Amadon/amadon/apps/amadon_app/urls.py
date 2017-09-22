@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from views import *
 urlpatterns = [ 
     url(r'^$', amadon, name = 'amadon'),
-    url(r'^amadon', amadon, name='amadom'),
-    url(r'^amadon/checkout', checkout, name = 'checkout'),
-    url(r'^amadon/buy', buy, name = 'buy'),
+    url(r'^amadon$', amadon, name='amadon'),
+    url(r'^amadon/checkout$', checkout, name = 'checkout'),
+    url(r'^buy$', buy, name = 'buy'),
 ]

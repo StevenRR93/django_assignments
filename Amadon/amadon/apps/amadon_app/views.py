@@ -1,28 +1,44 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
+
+from django import forms
 
 def amadon(request):
     return render(request, 'amadon.html')
 
 def checkout(request):
-    request.session['wordlist'] = []
-    return render(request, 'checkout.html')
+    print("session")
+    print(request.session['total_purchased'])
+    print(request.session['total_items'])
+    print(request.session['last_purchase'])
+    return render(request, 'amadon/checkout.html')
 
 def buy(request):
     if (request.method == "POST"):
-        word = request.session.get('wordlist', [])
-        request.session['wordlist'] = word
-        dictionary = {}
-        dictionary['time'] = time.strftime("%I:%M:%S%p, %B %d %Y")
-        dictionary['string'] = request.POST.get('string', "")
-        dictionary['color'] = request.POST.get('color', "red")
-        if (request.POST.get('font', False)):
-            dictionary['font'] = "30px"
-        else :
-            dictionary['font'] = "18px"
-        request.session['wordlist'].append(dictionary)
-        return redirect('/checkout')
-    else:
-	    return redirect('/checkout')
+        total_items = request.session.get('total_items', 0)
+        request.session['total_items'] = total_items
+        total_purchased = request.session.get('total_purchased', 0)
+        request.session['total_purchased'] = total_purchased
+        product_id = request.POST['product_id']
+        if (product_id == "1000"):
+            request.session['total_items'] += int(request.POST['tshirt'])
+            request.session['total_purchased'] += float(request.POST['tshirt'])* 19.99
+            request.session['last_purchase'] = float(request.POST['tshirt'])* 19.99
+        elif (product_id == "1001"):
+            request.session['total_items'] += int(request.POST['sweater'])
+            request.session['total_purchased'] += float(request.POST['sweater'])* 29.99
+            request.session['last_purchase'] = float(request.POST['sweater'])* 29.99
+        elif (product_id == "1002"):
+            request.session['total_items'] += int(request.POST['cup'])
+            request.session['total_purchased'] += float(request.POST['cup'])* 4.99
+            request.session['last_purchase'] = float(request.POST['cup'])* 4.99
+        elif (product_id == "1003"):
+            request.session['total_items'] += int(request.POST['book'])
+            request.session['total_purchased'] += float(request.POST['book'])* 49.99
+            request.session['last_purchase'] = float(request.POST['book'])* 49.99
+        else:
+            request.session['last_purchase'] = 0.00
+    return redirect("amadon/checkout")
+    

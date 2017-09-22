@@ -17,5 +17,5 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^', include('apps.amadon_app.urls', namespace='amadon'))
+    url(r'^', include('apps.amadon_app.urls', namespace='amadon_app'))
 ]
