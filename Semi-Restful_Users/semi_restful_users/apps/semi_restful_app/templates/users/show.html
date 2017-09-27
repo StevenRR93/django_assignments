@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #heading{
+          font-size: 40px;
+        }
+        #area{
+            margin: 1px auto;
+            padding: 2px;
+            width: 650px; 
+            display: block;
+            text-align: center;
+        }
+  </style>
+  
+  </head>
+  <body>
+        <div id = "area">
+            <h1 id = 'heading'> User {{user.id}}</h1>
+            <p>Full Name: {{user.first_name}} {{user.last_name}}</p>
+            <p>E-mail: {{user.email}}</p>
+            <p>Created at: {{user.created_at}}</p>
+            <p><a href = "/users/{{user.id}}/edit">Edit </a>|<a href = "/users/{{user.id}}/destroy">Delete </a></p>
+            <a href = "/users">Home</a>
+        </div>
+    </form>
+  </body>
+</html>

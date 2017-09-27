@@ -1,0 +1,28 @@
+Dojos.objects.create(name="CodingDojo Silicon Valley", city="Mountain View", state="CA") 
+Dojos.objects.create(name="CodingDojo Seattle", city="Seattle", state= "WA") 
+Dojos.objects.create(name="CodingDojo New York", city="New York", state ="NY")
+
+Dojos.objects.get(id=3).delete()
+Dojos.objects.get(id=2).delete()
+Dojos.objects.get(id=1).delete()
+
+Dojos.objects.create(name="CodingDojo New Silicon Valley", city="Mountain View", state="CA") 
+Dojos.objects.create(name="CodingDojo New Seattle", city="Seattle", state= "WA") 
+Dojos.objects.create(name="CodingDojo New New York", city="New York", state = "NY")
+
+from django.contrib.auth.models import Dojos
+dojo = Dojos.objects.get(id=user_id)
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="One")
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="Two")
+Ninjas.objects.create(dojo_id = Dojos.objects.get(id = 4), first_name="User", last_name=Three")
+
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="Four")
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="Five")
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="Six")
+
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="Seven")
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="Eight")
+Ninjas.objects.create(dojos_id = Dojos.objects.get(id = 4), first_name="User", last_name="Nine")
+
+Dojos.objects.first().Ninjas.all()
+Dojos.objects.last().Ninjas.all()

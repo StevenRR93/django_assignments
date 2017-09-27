@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #area{
+            margin: 1px auto;
+            padding: 2px;
+            width: 650px; 
+            display: block;
+            text-align: center;
+        }
+  </style>
+  
+  </head>
+  <body>
+      <div id = 'area'>
+        <h1 id = 'heading'> Add a new User</h1>
+        <form action="/users/create" method="POST">
+            {% csrf_token %}
+            First name:<br>
+            <input type="text" name="first_name">
+            <br>
+            Last name:<br>
+            <input type="text" name="last_name">
+            <br><br>
+            E-mail:<br>
+            <input type="text" name="email">
+            <br><br>
+            <input type="submit" value="Create">
+        </form> <br>
+        <a href = "/users">Go Back</a>
+      </div>
+  </body>
+</html>

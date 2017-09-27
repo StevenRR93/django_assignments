@@ -1,0 +1,34 @@
+python manage.py makemigrations
+python manage.py migrate
+python manage.py shell
+from apps.{{app_name}}.models import *
+Users.objects.all()
+	<QuerySet []>
+Users.objects.create(id = 1, first_name="Not", last_name="Sure", email_address = "notsure@notsure.webpage", age = 30)
+	<Users: Users object>
+Users.objects.create(id = 2, first_name="Some", last_name="Guy", email_address = "something@email.something", age = 101)
+	<Users: Users object>
+Users.objects.create(id = 3, first_name="User", last_name="Name", email_address = "username@email.address", age = 1)
+	<Users: Users object>
+Users.objects.all()
+	<QuerySet [<Users: Users object>, <Users: Users object>, <Users: Users object>]>
+Users.objects.first() 
+	<Users: Users object>
+Users.objects.last()
+	<Users: Users object>
+Users.objects.filter(first_name="Not")
+	<QuerySet [<Users: Users object>]>
+Users.objects.raw("SELECT * FROM Users WHERE Users.first_name() = Not ORDER BY first_name() DESC")
+	<RawQuerySet: SELECT * FROM Users WHERE Users.first_name() = Not ORDER BY first_name() DESC>
+Users.objects.filter(first_name="Not").order_by("-first_name")
+	<QuerySet [<Users: Users object>]>
+
+a = Users.objects.get(id=3)
+a.last_name = "Nameplate"
+a.save()
+
+Users.objects.get(id=3).last_name
+	u'Nameplate'
+
+Users.objects.get(id=2).delete
+	<bound method Users.delete of <Users: Users object>>

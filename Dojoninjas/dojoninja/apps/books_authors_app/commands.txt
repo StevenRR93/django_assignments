@@ -1,0 +1,44 @@
+Books.objects.create(name="C sharp", desc="programming book about c sharp") 
+Books.objects.create(name="Java", desc="programming book about Java") 
+Books.objects.create(name="Python", desc="programming book about Python")
+Books.objects.create(name="Php", desc="programming book about Php")
+Books.objects.create(name="Ruby", desc="programming book about Ruby")
+
+Authors.objects.create(first_name="Mike", last_name ="Name", email = "Mike@codingdojo.com")
+Authors.objects.create(first_name="Speros", last_name ="Author", email = "Speros@codingdojo.com")
+Authors.objects.create(first_name="John", last_name ="Smith", email = "John@codingdojo.com")
+Authors.objects.create(first_name="Jadee", last_name ="Something", email = "Jadee@codingdojo.com")
+Authors.objects.create(first_name="Jay", last_name ="Last", email = "Jay@codingdojo.com")
+
+b = Books.objects.get(id=5)
+b.name = "C#"
+b.save()
+
+a = Authors.objects.get(id=5)
+a.first_name = "Ketul"
+b.save()
+
+Books_Authors.objects.create(book_id = Books.objects.get(id=1), author_id = Authors.objects.get(id=1))
+
+Books_Authors.objects.create(book_id = Books.objects.get(id=2), author_id = Authors.objects.get(id=1))
+
+Books_Authors.objects.create(book_id = Books.objects.get(id=1), author_id = Authors.objects.get(id=2))
+Books_Authors.objects.create(book_id = Books.objects.get(id=2), author_id = Authors.objects.get(id=2))
+Books_Authors.objects.create(book_id = Books.objects.get(id=3), author_id = Authors.objects.get(id=2))
+
+Books_Authors.objects.create(book_id = Books.objects.get(id=1), author_id = Authors.objects.get(id=3))
+Books_Authors.objects.create(book_id = Books.objects.get(id=2), author_id = Authors.objects.get(id=3))
+Books_Authors.objects.create(book_id = Books.objects.get(id=3), author_id = Authors.objects.get(id=3))
+Books_Authors.objects.create(book_id = Books.objects.get(id=4), author_id = Authors.objects.get(id=3))
+
+Books_Authors.objects.create(book_id = Books.objects.get(id=1), author_id = Authors.objects.get(id=4))
+Books_Authors.objects.create(book_id = Books.objects.get(id=2), author_id = Authors.objects.get(id=4))
+Books_Authors.objects.create(book_id = Books.objects.get(id=3), author_id = Authors.objects.get(id=4))
+Books_Authors.objects.create(book_id = Books.objects.get(id=4), author_id = Authors.objects.get(id=4))
+Books_Authors.objects.create(book_id = Books.objects.get(id=5), author_id = Authors.objects.get(id=4))
+
+Authors.objects.filter(books_authors__book_id = 3).all()
+Authors.objects.filter(books_authors__book_id = 3).first()
+Books_Authors.objects.create(book_id = Books.objects.get(id=2), author_id = Authors.objects.get(id=5))
+Books.objects.filter(books_authors__author_id = 3).all()
+Books.objects.filter(books_authors__author_id = 2).all()
