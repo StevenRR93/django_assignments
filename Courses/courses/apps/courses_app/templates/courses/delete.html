@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Delete?</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #area{
+            margin: 1px auto;
+            padding: 2px;
+            width: 650px; 
+            display: block;
+            text-align: center;
+        }
+  </style>
+  
+  </head>
+  <body>
+      <div id = 'area'>
+        <h1 id = 'heading'> Are you sure you want to delete the following course?</h1>
+        <p>Course Name: {{course.name}}</p>
+        <p>Course Description: {{course.description}}</p>
+        <form action="/courses" method="GET">
+            <input type="submit" value="Nope, sorry.">
+        </form> <br>
+        <form action="/courses/destroy/{{course.id}}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Yes, I want to delete this.">
+        </form> <br>
+      </div>
+  </body>
+</html>

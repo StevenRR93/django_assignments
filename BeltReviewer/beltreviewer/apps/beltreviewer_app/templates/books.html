@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Wecome to Book Review</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #top{
+            margin: 1px auto;
+            padding: 2px;
+            width: 95%; 
+            height: 150px;
+            display: block;
+            text-align: left;
+        }
+        #heading{
+            font-size: 40px;
+            float: left;
+            width: 60%;
+        }
+        h1 heading{
+            size: 40px;
+        }
+        #sidebar{
+            text-align: right;
+            float: right;
+            width: 20%;
+        }
+        #left_area{
+            margin: 1px auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 2px;
+            width: 40%; 
+            display: inline-block;
+            text-align: left;
+            vertical-align: top;
+        }
+        #right_area{
+            margin: 1px auto;
+            margin-left: 30px;
+            padding: 2px;
+            width: 40%; 
+            display: inline-block;
+            text-align: left;
+            vertical-align: top;
+        }
+        .tab{
+            font-size: 30px;
+        }
+        .section{
+            border-top: 3px solid black;
+        }
+        nav ul{height:300px; width:400px; border: 1px solid black;}
+        nav ul{overflow:hidden; overflow-y:scroll;}
+  </style>
+  
+  </head>
+  <body>
+        <div id = 'top'>
+            <h1 id = 'heading'> Hello {{request.session.alias}}, you are logged in!</h1><br>
+            <p id = 'sidebar'> <a href = 'books/add'>Add a new book and review</a> | <a href = '/signout'>Log out</a> </p>
+        </div>
+        <div id = "left_area">
+            
+            <p class = 'tab'>Recent Book Reviews</p>
+            {% if reviews != null %}
+            {% for review in reviews %}
+            <div class = 'section'>
+                <p><a href = 'books/{{review.book.id}}'>{{review.book.title}}</a></p>
+                <p>Rating: {{review.rating}}
+                {% for i in review.rating %}
+                    <img src="/fullstar" alt="Star" height="18px" width="18px">
+                {% endfor %}
+                {% for j in review.rating %}
+                    <img src="/emptystar" alt="NoStar" height="18px" width="18px">
+                {% endfor %}
+                </p>
+                <p><a href = "users/{{review.user.id}}">{{review.user.alias}}</a> says: {{review.description}}</p>
+                <p>{{review.created_at}}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No recent reviews, why don't you <a href = 'books/add'>add a new one</a></p>
+            {% endif %}
+            <p class = 'tab'>Your Book Reviews</p>
+            {% if your_reviews != null %}
+            {% for your in your_reviews %}
+            <div class = 'section'>
+                <p><a href = 'books/{{your.book.id}}'>{{your.book.title}}</a></p>
+                <p>Rating: {{your.rating}}</p>
+                <p>{{your.description}}</p>
+                <p>{{your.created_at}}</p>
+            </div>
+            {% endfor %}
+            {% elif your_reviews == null %}
+            <p>You haven't made a review, why don't you <a href = 'books/add'>add a new one</a></p>
+            {% endif %} 
+        </div>
+        <div id = 'right_area'>       
+            <p class = 'tab'>Other Books with Reviews </p>
+                {% if books != null %}
+                <nav>
+                    <ul>
+                        {% for book in books %}
+                        <li><a href = 'books/{{book.id}}'>{{book.title}}</li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+                {% else %}
+                    <nav>
+                        <ul>
+                            <li>There are no books to display at the moment:</li>
+                        </ul>
+                    </nav>
+                {% endif %}
+        </div>
+    </form>
+  </body>
+</html>

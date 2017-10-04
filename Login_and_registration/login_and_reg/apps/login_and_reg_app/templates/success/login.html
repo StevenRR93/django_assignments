@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #heading{
+          font-size: 40px;
+        }
+        #area{
+            margin: 1px auto;
+            padding: 2px;
+            width: 650px; 
+            display: block;
+            text-align: center;
+        }
+  </style>
+  
+  </head>
+  <body>
+        <div id = "area">
+            <h1 id = 'heading'> Welcome {{request.session.first_name}} {{request.session.last_name}}, you have successfully logged in!</h1><br>
+            <p>Click here to sign out:</p>
+            <a href = "/signout">Sign out</a>
+        </div>
+    </form>
+  </body>
+</html>

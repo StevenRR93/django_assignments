@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Wecome to Book Review</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #top{
+            margin: 1px auto;
+            padding: 2px;
+            width: 95%; 
+            height: 200px;
+            display: block;
+            text-align: left;           
+        }
+        #heading{
+            width: 45%;
+            float: left;
+        }
+        #head1{
+            font-size: 30px;
+        }
+        #head2{
+            font-size: 20px;
+        }
+        #sidebar{
+            width: 45%;
+            text-align: right;
+            float: right;
+        }
+        #left_area{
+            margin: 1px auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 2px;
+            width: 45%; 
+            float: left;
+            text-align: left;
+            vertical-align: top;
+            border: 1px solid black;
+        }
+        #right_area{
+            margin: 1px auto;
+            padding: 2px;
+            width: 30%; 
+            float: right;
+            text-align: center;
+            vertical-align: top;
+            border: 1px solid green;
+        }
+        .tab{
+            font-size: 30px;
+        }
+        .section{
+            border-top: 3px solid black;
+        }
+        nav ul{height:200px; width:300px; border: 1px solid black;}
+        nav ul{overflow:hidden; overflow-y:scroll;}
+  </style>
+  
+  </head>
+  <body>
+        <selection id = 'top'>
+            <h1 id = 'heading'> <p id = 'head1'>{{book.title}}</p><p id = 'head2'>Author: {{book.author}}</p></h1><br>
+            <p id = 'sidebar'> <a href = '/books'>Home</a> | <a href = '/signout'>Log out</a> </p>
+        </selection>
+        <div id = "left_area">
+            <p class = 'tab'>Reviews</p>
+            {% if reviews != null %}
+            {% for review in reviews %}
+            <div class = 'section'>
+                <p>{{review.rating}}</p>
+                <p><a href = "user/{{review.user.id}}">{{review.user.alias}}</a> says: {{review.description}}</p>
+                <p>{{review.created_at}}</p>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>No recent reviews, why don't you <a href = 'books/add'>add a new one</a></p>
+            {% endif %} 
+        </div>
+        <div id = 'right_area'>     
+                <form action="/review" method="POST">
+                {% csrf_token %}
+                <p class = 'tab'>Create a new Review</p>
+                <p class = 'mid_heading'>Review:</p>
+                <input type="text" name="description">
+                <br>
+                <p class = 'mid_heading'>Rating:</p>
+                <select name="rating" id="rating">
+                    {% for i in "012345" %}
+                        <option value="{{i}}">{{i}}</option>
+                    {% endfor %}
+                </select><br><br>
+                <input type="hidden" name= "idnum" value="{{book.id}}">
+                <br><br>
+                <input type="submit" value="Add review">
+                </form>
+            </div>
+    </form>
+  </body>
+</html>

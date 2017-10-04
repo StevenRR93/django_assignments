@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Wecome to Book Review</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #top{
+            margin: 1px auto;
+            padding: 2px;
+            width: 95%; 
+            height: 50px;
+            display: block;
+            text-align: left;
+        }
+        #heading{
+            font-size: 30px;
+            width: 60%;
+        }
+        #sidebar{
+            text-align: right;
+            float: right;
+            width: 50%;
+        }
+        #first_area{
+            margin: 1px auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 2px;
+            width: 80%; 
+            display: block;
+            text-align: left;
+        }
+        #last_area{
+            margin: 1px auto;
+            margin-left: 30px;
+            padding: 2px;
+            width: 80%; 
+            display: block;
+            text-align: left;
+        }
+        .tab{
+            font-size: 30px;
+        }
+        .section{
+            border-top: 3px solid black;
+        }
+        nav ul{height:300px; width:400px; border: 1px solid black;}
+        nav ul{overflow:hidden; overflow-y:scroll;}
+  </style>
+  
+  </head>
+  <body>
+        <div id = 'top'>
+            <p id = 'sidebar'> <a href = '/books'>Home</a> | <a href = 'books/add'>Add a new book and review</a> | <a href = '/signout'>Log out</a> </p>
+        </div>
+        <div id = "first_area">
+            <p id = "heading">User Alias: {{user.alias}}</p>
+            <p>Name: {{user.first_name}} {{user.last_name}}</p>
+            <p>Email: {{user.email}}</p>
+            <p>Total Reviews: {{rcount}}</p>
+        </div>
+        <div id = 'last_area'>       
+            <p class = 'tab'>Posted Reviews on the following books: </p>
+                {% if reviews != null %}
+                {% for review in reviews %}
+                <p><a href = 'books/{{review.book.id}}'>{{review.book.title}}</a></p>
+                {% endfor %}
+                {% else %}
+                <p>There are no books to display at the moment</p>
+                {% endif %}
+        </div>
+    </form>
+  </body>
+</html>

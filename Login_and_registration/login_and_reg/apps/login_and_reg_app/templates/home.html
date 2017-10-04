@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #heading{
+            display: block;
+            align-self: auto;
+            font-size: 40px; 
+        }
+        #area{
+            margin: 1px auto;
+            padding: 2px;
+            width: 650px; 
+            display: block;
+            text-align: center;
+        }
+        .messages{
+            color: red;
+        }
+  </style>
+  
+  </head>
+  <body>
+      <div id = 'area'>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <h1 id = 'heading'> Registration for new users</h1>
+        <form action="/register" method="POST">
+            {% csrf_token %}
+            First name:<br>
+            <input type="text" name="first_name">
+            <br><br>
+            Last name:<br>
+            <input type="text" name="last_name">
+            <br><br>
+            E-mail:<br>
+            <input type="text" name="email">
+            <br><br>
+            Password:<br>
+            <input type="text" name="password">
+            <br><br>
+            Confirm Password:<br>
+            <input type="text" name="confirmpw">
+            <br><br>
+            <input type="submit" value="Register">
+        </form> <br>
+        <h1 id = 'heading'> Login for existing users</h1>
+        <form action="/login" method="POST">
+            {% csrf_token %}
+            E-mail:<br>
+            <input type="text" name="email">
+            <br><br>
+            Password:<br>
+            <input type="text" name="password">
+            <br><br>
+            <input type="submit" value="Login">
+        </form> <br>
+      </div>
+  </body>
+</html>

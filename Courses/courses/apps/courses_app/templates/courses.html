@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+  <!--<link rel="stylesheet" href="stylesheet.css" type="text/css">-->
+  <style type="text/css">
+        *{
+           font-size: 18px; 
+        }
+        #heading{
+            display: block;
+            align-self: auto;
+            font-size: 40px; 
+        }
+        #area{
+            margin: 1px auto;
+            padding: 2px;
+            width: 650px; 
+            display: block;
+            text-align: center;
+        }
+        #table_id{
+            margin: 1px auto;
+            padding: 2px;
+            width: 600px;
+            display: block;
+            text-align: left;
+            align-self: auto;
+            background-color: #FFFFFF;
+            border: 2px solid black;
+        }
+        .table_title{  
+            margin: 0px;
+            padding: 0px; 
+            background-color: #4B859C;
+            border-bottom: 3px solid black;
+            border: 1px solid black;
+        }
+        .table_alt1{
+            margin: 0px;
+            padding: 0px; 
+            background-color:#90D2EC;
+            border: 1px solid black;
+        }
+        .table_alt2{
+            margin: 0px;
+            padding: 0px; 
+            background-color:#3FA6CC;
+            border: 1px solid black;
+        }
+  </style>
+  
+  </head>
+  <body>
+      <div id = 'area'>
+        <form action="/courses/create" method="POST">
+            {% csrf_token %}
+            Name:<br>
+            <input type="text" name="name">
+            <br>
+            Description:<br>
+            <input type="textbox" name="description">
+            <br><br>
+            <input type="submit" value="Add">
+        </form> <br>
+        <h1 id = 'heading'> Courses</h1>
+        <table id = "table_id">
+            <tr class = "table_title">
+                <th>Course Name</th>
+                <th>Description</th> 
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for course in courses %}
+            {% if forloop.counter0|divisibleby:2 %}
+            <tr class = "table_alt1">
+                <td>{{course.name}}</td>
+                <td>{{course.description}}</td> 
+                <td>{{course.created_at}}</td>
+                <td><a href = "/courses/delete/{{course.id}}" >Remove</a></td>
+            </tr>
+            {% else %}
+            <tr class = "table_alt2">
+                <td>{{course.name}}</td>
+                <td>{{course.description}}</td> 
+                <td>{{course.created_at}}</td>
+                <td><a href = "/courses/delete/{{course.id}}" >Remove</a></td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
+      </div>
+  </body>
+</html>
